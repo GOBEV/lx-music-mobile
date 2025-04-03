@@ -1,4 +1,4 @@
-# lx-music-mobile 常见问题
+# lx-music-mobile 常见问题 添加密钥签名
 
 本文档已迁移至：<https://lyswhut.github.io/lx-music-doc/mobile/faq>
 
