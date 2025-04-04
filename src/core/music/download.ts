@@ -14,10 +14,10 @@ export const getMusicUrl = async({ musicInfo, isRefresh, allowToggleSource = tru
   onToggleSource?: (musicInfo?: LX.Music.MusicInfoOnline) => void
   allowToggleSource?: boolean
 }): Promise<string> => {
-  // if (!isRefresh) {
-  //   const path = await getDownloadFilePath(musicInfo, appSetting['download.savePath'])
-  //   if (path) return path
-  // }
+  if (!isRefresh) {
+    const path = await getDownloadFilePath(musicInfo, appSetting['download.savePath'])
+    if (path) return path
+  }
 
   return getOnlineMusicUrl({ musicInfo: musicInfo.metadata.musicInfo, isRefresh, onToggleSource, allowToggleSource })
 }
