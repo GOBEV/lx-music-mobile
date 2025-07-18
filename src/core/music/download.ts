@@ -14,10 +14,10 @@ export const getMusicUrl = async({ musicInfo, isRefresh, allowToggleSource = tru
   onToggleSource?: (musicInfo?: LX.Music.MusicInfoOnline) => void
   allowToggleSource?: boolean
 }): Promise<string> => {
-  if (!isRefresh) {
-    const path = await getDownloadFilePath(musicInfo, appSetting['download.savePath'])
-    if (path) return path
-  }
+  // if (!isRefresh) {
+  //   const path = await getDownloadFilePath(musicInfo, appSetting['download.savePath'])
+  //   if (path) return path
+  // }
 
   return getOnlineMusicUrl({ musicInfo: musicInfo.metadata.musicInfo, isRefresh, onToggleSource, allowToggleSource })
 }
@@ -71,22 +71,3 @@ export const getLyricInfo = async({ musicInfo, isRefresh, onToggleSource = () =>
     throw new Error('failed')
   })
 }
-
-import RNFS from 'react-native-fs';
-
-export const downloadSong = async (url: string, fileName: string) => {
-  const path = `${RNFS.DocumentDirectoryPath}/${fileName}`;
-  try {
-    const downloadResult = await RNFS.downloadFile({ fromUrl: url, toFile: path }).promise;
-    if (downloadResult.statusCode === 200) {
-      console.log('Song downloaded successfully to', path);
-      return path;
-    } else {
-      console.log('Failed to download song');
-      return null;
-    }
-  } catch (error) {
-    console.error('Download error:', error);
-    return null;
-  }
-};
